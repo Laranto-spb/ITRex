@@ -17,8 +17,6 @@ const getData = fetch('https://itrex-react-lab-files.s3.eu-central-1.amazonaws.c
 const getRes = async () => {
   const result = await getData;
 
-
-
   for (let obj of result) {
     const row = document.createElement('tr');
     row.innerHTML = `<td> ${obj.id}</td> <td> ${obj.firstName} </td> <td> ${obj.lastName} </td> <td> ${obj.email} </td> <td> ${obj.phone} </td> <td> ${obj.adress.state} </td>`;
@@ -39,10 +37,11 @@ const getRes = async () => {
 
   tBody.addEventListener('click', (e) => {
     const clickedID = e.target.parentNode.childNodes[0].textContent;
+    const clickedRow = e.target.parentNode;
+  
+    console.log(clickedRow);
     for (let obj of result) {
-
-      if (obj.id == clickedID) {
-        console.log(obj);      
+      if (obj.id == clickedID) {     
         userName.textContent = `${obj.firstName} ${obj.lastName}`;
         userDesc.textContent = `${obj.description}`;
         userAdress.textContent = `${obj.adress.streetAddress}`;
@@ -53,7 +52,6 @@ const getRes = async () => {
       }
     }
   })
-
 
 }
 
