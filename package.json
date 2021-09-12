@@ -1,0 +1,24 @@
+{
+  "name": "itrex",
+  "version": "1.0.0",
+  "description": "Test task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laranto-spb/ITRex.git"
+  },
+  "author": "Larisa Antokhina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laranto-spb/ITRex/issues"
+  },
+  "homepage": "https://github.com/Laranto-spb/ITRex#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "^3.6.0",
+    "jquery.fancytable": "^1.0.22"
+  }
+}
