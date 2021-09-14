@@ -25,13 +25,38 @@ const getRes = async () => {
     tBody.appendChild(row);
   }
 
+  const setStates = () => {
+    const stateArray = [];
+
+    for (let res of result) {
+      const state = res.adress.state;
+      stateArray.push(state);
+    }
+
+    const uniqeStates = stateArray.filter((item, index) => stateArray.indexOf(item) === index);
+    
+    return uniqeStates;
+  }
+
+  const setSelect = () => {
+    const selectArr = setStates();
+    
+    for (let state of selectArr) {
+      const option = document.createElement('option');
+      option.value = state;
+      option.textContent = state;
+      stateSelect.append(option);
+    }
+  }
+
+  setSelect();
 
 
   tBody.addEventListener('click', (e) => {
     const clickedID = e.target.parentNode.childNodes[0].textContent;
     const clickedRow = e.target.parentNode;
     for (let obj of result) {
-      if (obj.id == clickedID) {     
+      if (obj.id == clickedID) {
         userName.textContent = `${obj.firstName} ${obj.lastName}`;
         userDesc.textContent = `${obj.description}`;
         userAdress.textContent = `${obj.adress.streetAddress}`;
@@ -43,36 +68,34 @@ const getRes = async () => {
     }
   })
 
-  const searchUser = (column, typeFilter) => { 
+  const searchUser = (column, typeFilter) => {
     const rows = tBody.getElementsByTagName("tr")
     let txtValue = null;
-    
+
     for (let row of rows) {
       const cell = row.getElementsByTagName("td")[column];
-      
+
       if (cell) {
         txtValue = cell.textContent || cell.innerText;
 
         if (txtValue.toUpperCase().indexOf(typeFilter) > -1) { // if exists
           row.style.display = '';
-        }
-
-        else {
+        } else {
           row.style.display = 'none';
         }
       }
     }
   }
 
-  
+
   searchInput.addEventListener('keyup', () => {
     const upInputValue = searchInput.value.toUpperCase();
-    searchUser(2, upInputValue); 
+    searchUser(2, upInputValue);
   });
 
   stateSelect.addEventListener('change', () => {
     const selectValue = stateSelect.value.toUpperCase();
-    searchUser(5, selectValue); 
+    searchUser(5, selectValue);
   });
 
 }
