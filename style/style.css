@@ -23,7 +23,7 @@ body {
   padding: 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   background-color: #fff;
   border-radius: 24px;
 }
@@ -34,26 +34,6 @@ body {
 
 td {
   text-align: center;
-}
-
-.pag {
-  padding: 15px !important;
-  text-align: center;
-}
-
-.pag > a {
-  margin-right: 30px !important;
-  color: #00675C !important;
-  font-weight: 600 !important;
-}
-
-.fancySearchRow > th >input {
-  padding: 7px;
-  outline-color: #00675C;
-}
-
-.fancySearchRow > th >input::placeholder {
-  font-family: 'Montserrat', sans-serif;
 }
 
 .additional-info {

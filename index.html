@@ -8,37 +8,53 @@
   <title>User Profile Table</title>
   <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
   <div class="container">
-  <table id="sampleTable" class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>State</th>
-      </tr>      
-    </thead>
-    <tbody></tbody>
-  </table>
-  <div class="additional-info">
-    <h2 class="additional-info__title">Profile info</h2>
-    <ul class="additional-info__list">
-      <li>Selected profile: <span class="name"></span></li>
-      <li>Description: <span class="desc"></span></li>
-      <li>Adress: <span class="adress"></span></li>
-      <li>City: <span class="city"></span></li>
-      <li>State: <span class="state"></span></li>
-      <li>Index <span class="index"></span></li>
-    </ul>
-  </div>    
+    <table id="sampleTable" class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6">
+            <form action="">
+              <label for=""><input type="text" id="searchInput" class="search-input"></label>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <select name="" id="stateSelect">
+              <option value=""></option>
+              <option value="NL">NL</option>
+              <option value="OH">OH</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="additional-info">
+      <h2 class="additional-info__title">Profile info</h2>
+      <ul class="additional-info__list">
+        <li>Selected profile: <span class="name"></span></li>
+        <li>Description: <span class="desc"></span></li>
+        <li>Adress: <span class="adress"></span></li>
+        <li>City: <span class="city"></span></li>
+        <li>State: <span class="state"></span></li>
+        <li>Index <span class="index"></span></li>
+      </ul>
+    </div>
   </div>
- 
+
   <script src="scripts/script.js"></script>
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/jquery.fancytable/dist/fancyTable.min.js"></script>
 </body>
 
 </html>

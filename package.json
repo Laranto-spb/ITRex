@@ -17,8 +17,5 @@
   },
   "homepage": "https://github.com/Laranto-spb/ITRex#readme",
   "dependencies": {},
-  "devDependencies": {
-    "jquery": "^3.6.0",
-    "jquery.fancytable": "^1.0.22"
-  }
+  "devDependencies": {}
 }

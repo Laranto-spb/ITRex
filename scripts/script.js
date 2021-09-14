@@ -1,5 +1,7 @@
 const mainDiv = document.querySelector('.main');
 const tBody = document.querySelector('tbody');
+const searchInput = document.getElementById('searchInput');
+const stateSelect = document.getElementById('stateSelect');
 const userName = document.querySelector('.name');
 const userDesc = document.querySelector('.desc');
 const userAdress = document.querySelector('.adress');
@@ -23,23 +25,11 @@ const getRes = async () => {
     tBody.appendChild(row);
   }
 
-  $(document).ready(function () {
-    $("#sampleTable").fancyTable({
-      sortColumn: 0,
-      pagination: true,
-      perPage: 20,
-      globalSearch: true,
-      inputPlaceholder: 'Search...',
-    });
-  });
-
 
 
   tBody.addEventListener('click', (e) => {
     const clickedID = e.target.parentNode.childNodes[0].textContent;
     const clickedRow = e.target.parentNode;
-  
-    console.log(clickedRow);
     for (let obj of result) {
       if (obj.id == clickedID) {     
         userName.textContent = `${obj.firstName} ${obj.lastName}`;
@@ -52,6 +42,38 @@ const getRes = async () => {
       }
     }
   })
+
+  const searchUser = (column, typeFilter) => { 
+    const rows = tBody.getElementsByTagName("tr")
+    let txtValue = null;
+    
+    for (let row of rows) {
+      const cell = row.getElementsByTagName("td")[column];
+      
+      if (cell) {
+        txtValue = cell.textContent || cell.innerText;
+
+        if (txtValue.toUpperCase().indexOf(typeFilter) > -1) { // if exists
+          row.style.display = '';
+        }
+
+        else {
+          row.style.display = 'none';
+        }
+      }
+    }
+  }
+
+  
+  searchInput.addEventListener('keyup', () => {
+    const upInputValue = searchInput.value.toUpperCase();
+    searchUser(2, upInputValue); 
+  });
+
+  stateSelect.addEventListener('change', () => {
+    const selectValue = stateSelect.value.toUpperCase();
+    searchUser(5, selectValue); 
+  });
 
 }
 
