@@ -1,4 +1,5 @@
 const mainDiv = document.querySelector('.main');
+const table = document.getElementById('sampleTable');
 const tBody = document.querySelector('tbody');
 const searchInput = document.getElementById('searchInput');
 const stateSelect = document.getElementById('stateSelect');
@@ -32,15 +33,13 @@ const getRes = async () => {
       const state = res.adress.state;
       stateArray.push(state);
     }
-
     const uniqeStates = stateArray.filter((item, index) => stateArray.indexOf(item) === index);
-    
     return uniqeStates;
   }
 
   const setSelect = () => {
     const selectArr = setStates();
-    
+
     for (let state of selectArr) {
       const option = document.createElement('option');
       option.value = state;
@@ -69,11 +68,11 @@ const getRes = async () => {
   })
 
   const searchUser = (column, typeFilter) => {
-    const rows = tBody.getElementsByTagName("tr")
+    const rows = Array.from(tBody.querySelectorAll('tr'))
     let txtValue = null;
 
     for (let row of rows) {
-      const cell = row.getElementsByTagName("td")[column];
+      const cell = Array.from(row.querySelectorAll('td'))[column];
 
       if (cell) {
         txtValue = cell.textContent || cell.innerText;
@@ -86,6 +85,40 @@ const getRes = async () => {
       }
     }
   }
+
+  const sortTable = (table, column, asc = true) => {
+
+    const tBody = table.tBodies[0];
+    const dirMod = asc ? 1 : -1;
+    const rows = Array.from(tBody.querySelectorAll('tr'));
+
+    const sortedRows = rows.sort((a, b) => {
+      const aText = a.querySelector(`td:nth-child(${column+1})`).textContent.trim();
+      const bText = b.querySelector(`td:nth-child(${column+1})`).textContent.trim();
+
+      return aText > bText ? (1 * dirMod) : (-1 * dirMod);
+    })
+
+    while (tBody.firstChild) {
+      tBody.removeChild(tBody.firstChild);
+    }
+
+    tBody.append(...sortedRows);
+
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+    table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-asc", asc);
+    table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-desc", !asc);
+  }
+
+  document.querySelectorAll(".table th").forEach(headerCell => {
+    headerCell.addEventListener("click", () => {
+      const tableElement = headerCell.parentElement.parentElement.parentElement;
+      const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+      const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+      sortTable(tableElement, headerIndex, !currentIsAscending);
+    });
+  });
 
 
   searchInput.addEventListener('keyup', () => {

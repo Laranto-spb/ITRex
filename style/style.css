@@ -36,6 +36,19 @@ td {
   text-align: center;
 }
 
+.table .th-sort-asc::after {
+  content: "\25b4";
+}
+
+.table .th-sort-desc::after {
+  content: "\25be";
+}
+
+.table .th-sort-asc::after,
+.table .th-sort-desc::after {
+  margin-left: 5px;
+}
+
 .additional-info {
   width: 40%;
   padding: 20px;
