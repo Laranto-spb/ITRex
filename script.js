@@ -92,8 +92,8 @@ const getRes = async () => {
     const rows = Array.from(tBody.querySelectorAll('tr'));
 
     const sortedRows = rows.sort((a, b) => {
-      const aText = parseInt(a.querySelector(`td:nth-child(${column+1})`).textContent.trim()); //for numbers
-      const bText = parseInt(b.querySelector(`td:nth-child(${column+1})`).textContent.trim());
+      const aText = a.querySelector(`td:nth-child(${column+1})`).textContent.trim(); 
+      const bText = b.querySelector(`td:nth-child(${column+1})`).textContent.trim();
 
       return aText > bText ? (1 * dirMod) : (-1 * dirMod);
     })
@@ -111,6 +111,7 @@ const getRes = async () => {
 
   document.querySelectorAll(".table th").forEach(headerCell => {
     headerCell.addEventListener("click", () => {
+
       const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
       const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
